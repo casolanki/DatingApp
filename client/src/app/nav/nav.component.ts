@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from './../_services/account.service';
 import { Observable } from 'rxjs';
-import { User } from '../_model/user';
+import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
