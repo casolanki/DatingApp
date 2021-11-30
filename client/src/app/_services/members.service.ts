@@ -1,3 +1,4 @@
+import { Validators, ValidatorFn } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +19,7 @@ export class MembersService {
   constructor(private http: HttpClient) { }
 
   getMembers() {
-    if (this.members?.length > 0) return of(this.members);
+   if (this.members?.length > 0) return of(this.members);
     return this.http.get<Member[]>(this.baseUrl + 'users').pipe(
       map(member => {
         this.members = member;
@@ -28,9 +29,8 @@ export class MembersService {
   }
 
   getMember(username: string) {
-    const member = (this.members?.length > 0) ? this.members.find(x => x.username = username)
-        : undefined;
-    if (member !== undefined) return of(member);
+     const member = this.members?.find(x => x.username === username);        
+     if (member !== undefined) return of(member);
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
