@@ -21,7 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error) {
           switch (error.status) {
             case 400:
-              if (error.error.errors) {
+              if (error.error.errors) {//bad request validation error
                 const modelStateErrors = [];
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
@@ -29,9 +29,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modelStateErrors.flat();                
-              } else {
+              } else if(typeof(error.error) === 'object') { //bad request error as object(no msg pass)
                 this.toastr.error(error.error.title,error.error.status)
-              };
+              } else{
+                this.toastr.error(error.error, error.status); // bad request error string(pass msg)
+              }
               break;
             case 401: this.toastr.error(error.error,error.status);
               break;

@@ -1,3 +1,4 @@
+import { LikeParams } from './../_models/likeParams';
 import { AccountService } from './account.service';
 import { UserParams } from './../_models/userParams';
 import { PaginatedResult } from '../_models/pagination';
@@ -35,7 +36,7 @@ export class MembersService {
     return this.userParams;
   }
 
-  resetUserParams(){
+  resetUserParams() {
     this.userParams = new UserParams(this.user);
     return this.userParams;
   }
@@ -93,6 +94,16 @@ export class MembersService {
 
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(likeParams:LikeParams) {
+    let params = this.getPaginationHeaders(likeParams.pageNumber, likeParams.pageSize);
+    params = params.append('predicate', likeParams.predicate);
+    return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes',params);
   }
 
   private getPaginatedResult<T>(url, params) {
