@@ -1,4 +1,4 @@
-import { User } from './../../_model/user';
+import { User } from './../../_models/user';
 import { take } from 'rxjs/operators';
 import { AccountService } from './../../_services/account.service';
 import { UserParams } from './../../_models/userParams';

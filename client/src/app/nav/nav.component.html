@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
     <div class="container">
-        <a class="navbar-brand" routerLinkActive='active' routerLink='/'>Dating App</a>
+        <a class="navbar-brand" routerLinkActive='active' routerLink='/'>Maitri.Com</a>
 
         <!-- Commented Responsive Code -->
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -27,7 +27,7 @@
         </ul>
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
             <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
-            <a  class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.KnownAs}}</a>
+            <a  class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.knownAs}}</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
                 <div  class="dropdown-divider"></div>

@@ -1,7 +1,7 @@
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { MembersService } from 'src/app/_services/members.service';
 import { AccountService } from './../../_services/account.service';
-import { User } from './../../_model/user';
+import { User } from './../../_models/user';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { take } from 'rxjs/operators';
