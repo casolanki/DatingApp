@@ -27,6 +27,9 @@ namespace API.Helpers
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => 
                         src.Recipient.Photos.FirstOrDefault(x=> x.IsMain).Url));
             
+            //Blow Will send back date response by adding 'z' which help browser to convert UTC time to users localtime
+            CreateMap<DateTime,DateTime>().ConvertUsing(d => DateTime.SpecifyKind(d,DateTimeKind.Utc));
+            
         }
     }
 }

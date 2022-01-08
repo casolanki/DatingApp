@@ -8,6 +8,7 @@ using API.Extensions;
 using API.Interface;
 using API.Middleware;
 using API.Services;
+using API.SignalR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,7 @@ namespace API
             services.AddCors();            
             services.AddIdentityServices(_config);
             services.AddControllers();
+            services.AddSignalR(); // For chat 
 
         }
 
@@ -63,6 +65,7 @@ namespace API
 
             app.UseCors(policy => policy
             .AllowAnyHeader()
+            .AllowCredentials() // For SigleR Chat
             .AllowAnyMethod()
             .WithOrigins("https://localhost:4200"));
 
@@ -73,6 +76,8 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<PresenceHub>("hubs/presence"); // For Online Presence 
+                endpoints.MapHub<MessageHub>("hubs/message"); // For Message Chat 
             });
         }
     }
