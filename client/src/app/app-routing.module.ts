@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'members/:username', component: MemberDetailComponent, resolve : {member: MemberDetailedResolver}},
       { path: 'member/:edit', component: MemberEditComponent,canDeactivate:[PreventUnsavedChangesGuard] },
       { path: 'lists', component: ListsComponent },
-      { path: 'mesages', component: MessagesComponent },      
+      { path: 'messages', component: MessagesComponent },      
       { path: 'admin', component: AdminPanelComponent,canActivate:[AdminGuard] }      
     ]
   },
