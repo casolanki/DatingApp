@@ -70,14 +70,17 @@ namespace API
             .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
-
             app.UseAuthorization();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenceHub>("hubs/presence"); // For Online Presence 
                 endpoints.MapHub<MessageHub>("hubs/message"); // For Message Chat 
+                endpoints.MapFallbackToController("Index","Fallback");
             });
         }
     }
